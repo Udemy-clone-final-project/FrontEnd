@@ -6,3 +6,5 @@
 # Ignore build results
 bin/
 obj/
+.vscode
+*.editorconfig
