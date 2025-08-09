@@ -1,0 +1,41 @@
+{
+    "categories" : [
+       
+    {
+      "id": "1",
+      "title": "Stickers",
+      "banner": "/assets/images/stickers-banner.jpg",
+      "subCategories": [
+        { "title": "Vinyl", "image": "/assets/images/vinyl.jpg" },
+        { "title": "Glossy", "image": "/assets/images/glossy.jpg" }
+      ],
+      "themes": [
+        { "title": "Nature"},
+        { "title": "Anime" }
+      ],
+      "bestSelling": [
+        { "id": 101, "title": "Cute Cat", "price": 3.5, "image": "/assets/images/cat.jpg", "slug": "/product/101" },
+        { "id": 102, "title": "Space Rocket", "price": 4.0, "image": "/assets/images/rocket.jpg", "slug": "/product/102" }
+      ]
+    }
+    ,
+    {
+      "id": "2",
+      "title": "T-Shirts",
+      "banner": "/assets/images/tshirts-banner.jpg",
+      "subCategories": [
+        { "title": "Graphic", "image": "/assets/images/graphic.jpg", "link": "/category/3" },
+        { "title": "Plain", "image": "/assets/images/plain.jpg", "link": "/category/4" }
+      ],
+      "themes": [
+        { "title": "Sports", "image": "/assets/images/sports.jpg", "link": "/theme/3" },
+        { "title": "Music", "image": "/assets/images/music.jpg", "link": "/theme/4" }
+      ],
+      "bestSelling": [
+        { "id": 103, "title": "Mountain View", "price": 20, "image": "/assets/images/mountain.jpg", "slug": "/product/103" },
+        { "id": 104, "title": "City Nights", "price": 22, "image": "/assets/images/city.jpg", "slug": "/product/104" }
+      ]
+    }
+  ]
+    
+}

@@ -1,0 +1,46 @@
+<hr>
+<div class="category-page">
+  <!-- Banner -->
+  <!-- <div class="banner">
+    <img [src]="category.banner" [alt]="category.title" />
+  </div> -->
+
+  <app-category-banner [banner]="category.banner" [title]="category.title"></app-category-banner>
+  <hr>
+
+  <!-- Subcategories -->
+  <!-- <h2>Subcategories</h2>
+  <div class="subcategories">
+    <div *ngFor="let sub of category.subCategories" class="sub-item">
+      <img [src]="sub.image" [alt]="sub.title" />
+      <p>{{ sub.title }}</p>
+    </div>
+  </div> -->
+
+<app-sub-category-grid [subCategories] = "category.subCategories"></app-sub-category-grid>
+<hr>
+
+  <!-- Shop by theme -->
+  <!-- <h2>Shop by Theme</h2>
+  <div class="themes">
+    <div *ngFor="let theme of category.themes" class="theme-item">
+      <p>{{ theme.title }}</p>
+    </div>
+  </div> -->
+<app-shop-by-theme [themes]="category.themes"></app-shop-by-theme>
+<hr>
+
+  <!-- Best Selling -->
+  <!-- <h2>Best Selling</h2>
+  <div class="best-selling">
+    <div *ngFor="let product of category.bestSelling" class="product-item">
+      <img [src]="product.image" [alt]="product.title" />
+      <p>{{ product.title }}</p>
+      <span>\${{ product.price }}</span>
+    </div>
+  </div>
+</div> -->
+<app-best-selling-products [bestSelling] = "category.bestSelling"></app-best-selling-products>
+<hr>
+
+<!-- <P>{{category.id}}</P> -->

@@ -1,0 +1,12 @@
+<div class="themes">
+  <h2>Shop by Theme</h2>
+  <div class="theme-list">
+    <div *ngFor="let theme of themes" class="theme-card">
+      <a [routerLink]="">
+        <p>{{ theme.title }}</p>
+      </a>
+     
+    </div>
+  </div>
+</div>
+
