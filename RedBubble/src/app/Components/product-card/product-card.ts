@@ -1,12 +1,12 @@
-// import { Component, Input } from '@angular/core';
-// import { Product } from '../../Models/product';
+import { Component, Input } from '@angular/core';
+import { Product } from '../../Models/product';
 
-// @Component({
-//   selector: 'app-product-card',
-//   imports: [],
-//   templateUrl: './product-card.html',
-//   styleUrl: './product-card.css'
-// })
-// export class ProductCard {
-//   @Input() product?:Product;
-// }
+@Component({
+  selector: 'app-product-card',
+  imports: [],
+  templateUrl: './product-card.html',
+  styleUrl: './product-card.css'
+})
+export class ProductCard {
+  @Input() product?:Product;
+}

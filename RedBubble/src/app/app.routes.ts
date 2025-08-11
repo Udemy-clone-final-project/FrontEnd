@@ -9,6 +9,7 @@ export const routes: Routes = [
      { path: 'category/:id', component: CategoryComponent },
      { path: 'subcategory/:subCatId', component: ProductsPage },
      { path: 'theme/:themeId', component: ProductsPage },
+     
      // press sub-cat or theme ==> productspage
 
 ];

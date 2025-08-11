@@ -17,7 +17,7 @@ export class SubCategoryGrid {
 
   constructor(private router:Router){}
 
-  goToProducts(subCatId: number){
+  goToProducts(subCatId: string){
     // go to products that under this subcategory
     this.router.navigate(['/subcategory', subCatId]); // according to routes ==> this will go in ProductsPage
   }

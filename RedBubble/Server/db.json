@@ -1,41 +1,178 @@
 {
-    "categories" : [
-       
+  "categories": [
     {
       "id": "1",
       "title": "Stickers",
       "banner": "/assets/images/stickers-banner.jpg",
       "subCategories": [
-        { "id" : 1 , "title": "Vinyl", "image": "/assets/images/vinyl.jpg" },
-        { "id" : 2 , "title": "Glossy", "image": "/assets/images/glossy.jpg" }
+        {
+          "id": "1",
+          "title": "Vinyl",
+          "image": "/assets/images/vinyl.jpg"
+        },
+        {
+          "id": "2",
+          "title": "Glossy",
+          "image": "/assets/images/glossy.jpg"
+        }
       ],
       "themes": [
-        { "title": "Nature"},
-        { "title": "Anime" }
+        {
+          "title": "Nature"
+        },
+        {
+          "title": "Anime"
+        }
       ],
       "bestSelling": [
-        { "id": 101, "title": "Cute Cat", "price": 3.5, "image": "/assets/images/cat.jpg", "slug": "/product/101" },
-        { "id": 102, "title": "Space Rocket", "price": 4.0, "image": "/assets/images/rocket.jpg", "slug": "/product/102" }
+        {
+          "id": 101,
+          "title": "Cute Cat",
+          "price": 3.5,
+          "image": "/assets/images/cat.jpg",
+          "slug": "/product/101"
+        },
+        {
+          "id": 102,
+          "title": "Space Rocket",
+          "price": 4.0,
+          "image": "/assets/images/rocket.jpg",
+          "slug": "/product/102"
+        }
       ]
-    }
-    ,
+    },
     {
       "id": "2",
       "title": "T-Shirts",
       "banner": "/assets/images/tshirts-banner.jpg",
       "subCategories": [
-        { "title": "Graphic", "image": "/assets/images/graphic.jpg", "link": "/category/3" },
-        { "title": "Plain", "image": "/assets/images/plain.jpg", "link": "/category/4" }
+        {
+          "id": "3",
+          "title": "Graphic",
+          "image": "/assets/images/graphic.jpg",
+          "link": "/category/3"
+        },
+        {
+          "id": "4",
+          "title": "Plain",
+          "image": "/assets/images/plain.jpg",
+          "link": "/category/4"
+        }
       ],
       "themes": [
-        { "title": "Sports", "image": "/assets/images/sports.jpg", "link": "/theme/3" },
-        { "title": "Music", "image": "/assets/images/music.jpg", "link": "/theme/4" }
+        {
+          "title": "Sports",
+          "image": "/assets/images/sports.jpg",
+          "link": "/theme/3"
+        },
+        {
+          "title": "Music",
+          "image": "/assets/images/music.jpg",
+          "link": "/theme/4"
+        }
       ],
       "bestSelling": [
-        { "id": 103, "title": "Mountain View", "price": 20, "image": "/assets/images/mountain.jpg", "slug": "/product/103" },
-        { "id": 104, "title": "City Nights", "price": 22, "image": "/assets/images/city.jpg", "slug": "/product/104" }
+        {
+          "id": 103,
+          "title": "Mountain View",
+          "price": 20,
+          "image": "/assets/images/mountain.jpg",
+          "slug": "/product/103"
+        },
+        {
+          "id": 104,
+          "title": "City Nights",
+          "price": 22,
+          "image": "/assets/images/city.jpg",
+          "slug": "/product/104"
+        }
+      ]
+    }
+  ],
+  "subCategories": [
+    {
+      "id": "1",
+      "title": "Vinyl Stickers",
+      "image": "/assets/images/vinyl.jpg",
+      "products": [
+        {
+          "id": "1",
+          "title": "Cute Cat Vinyl Sticker",
+          "price": 3.5,
+          "image": "/assets/images/products/cat-vinyl.jpg",
+          "artistName": "ArtByLuna"
+        },
+        {
+          "id": "2",
+          "title": "Space Rocket Vinyl Sticker",
+          "price": 4.0,
+          "image": "/assets/images/products/rocket-vinyl.jpg",
+          "artistName": "SkyDesigns"
+        },
+        {
+          "id": "3",
+          "title": "Ocean Wave Vinyl Sticker",
+          "price": 3.8,
+          "image": "/assets/images/products/ocean-vinyl.jpg",
+          "artistName": "BlueHorizon"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Glossy Stickers",
+      "image": "/assets/images/glossy.jpg",
+      "products": [
+        {
+          "id": "4",
+          "title": "Floral Glossy Sticker",
+          "price": 4.2,
+          "image": "/assets/images/products/floral-glossy.jpg",
+          "artistName": "BloomStudio"
+        },
+        {
+          "id": "5",
+          "title": "Galaxy Glossy Sticker",
+          "price": 4.5,
+          "image": "/assets/images/products/galaxy-glossy.jpg",
+          "artistName": "StarryNightArt"
+        },
+        {
+          "id": "6",
+          "title": "Minimalist Line Art Glossy Sticker",
+          "price": 3.9,
+          "image": "/assets/images/products/lineart-glossy.jpg",
+          "artistName": "SimpleLines"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Holographic Stickers",
+      "image": "/assets/images/holographic.jpg",
+      "products": [
+        {
+          "id": "7",
+          "title": "Rainbow Holo Sticker",
+          "price": 4.8,
+          "image": "/assets/images/products/rainbow-holo.jpg",
+          "artistName": "ShinyVibes"
+        },
+        {
+          "id": "8",
+          "title": "Cyberpunk City Holo Sticker",
+          "price": 5.0,
+          "image": "/assets/images/products/cyberpunk-holo.jpg",
+          "artistName": "NeonDreams"
+        },
+        {
+          "id": "9",
+          "title": "Butterfly Holo Sticker",
+          "price": 4.6,
+          "image": "/assets/images/products/butterfly-holo.jpg",
+          "artistName": "NatureGlow"
+        }
       ]
     }
   ]
-    
 }
