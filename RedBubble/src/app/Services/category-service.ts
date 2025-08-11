@@ -37,4 +37,7 @@ export class CategoryService {
     return this.http.get<Category[]>(this.apiUrl);
   }
   // #endregion
+
+  // getSubCategoriesByCategory()
+  // getThemesByCategory
 }

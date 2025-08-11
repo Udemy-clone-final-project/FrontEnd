@@ -6,8 +6,8 @@
       "title": "Stickers",
       "banner": "/assets/images/stickers-banner.jpg",
       "subCategories": [
-        { "title": "Vinyl", "image": "/assets/images/vinyl.jpg" },
-        { "title": "Glossy", "image": "/assets/images/glossy.jpg" }
+        { "id" : 1 , "title": "Vinyl", "image": "/assets/images/vinyl.jpg" },
+        { "id" : 2 , "title": "Glossy", "image": "/assets/images/glossy.jpg" }
       ],
       "themes": [
         { "title": "Nature"},

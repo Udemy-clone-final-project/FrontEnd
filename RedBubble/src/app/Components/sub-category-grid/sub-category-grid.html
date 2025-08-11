@@ -2,11 +2,13 @@
 
 <div class="sub-categories">
   <div class="sub-category-list">
-    <div *ngFor="let sub of subCategories" class="sub-category-card">
-      <a [routerLink]="">
+    <div *ngFor="let sub of subCategories" class="sub-category-card"  >
+      
         <img [src]="sub.image" [alt]="sub.title" />
         <p>{{ sub.title }}</p>
-      </a>
+       
     </div>
   </div>
 </div>
+<!-- (click)="goToProducts(sub.id) -->
+ 
