@@ -163,6 +163,117 @@ main {
   top: 50%;
   transform: translateY(-50%);
 }
+
+
+
+
+
+/* Signup Page Styles */
+.signup-section {
+  background-color: #f8f8f8;
+  /* min-height: 100vh; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+.signup-container {
+  max-width: 600px;
+  width: 100%;
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 5px;
+  /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); */
+}
+
+.signup-choice {
+  display: flex;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.signup-choice .choice-item {
+  flex: 1;
+  padding: 20px;
+  cursor: pointer;
+  border-right: 1px solid #e0e0e0;
+  position: relative;
+  border: 2px solid transparent;
+
+  &:has(input[type="radio"]:checked){
+      border-color: #333;
+      border-radius: 5px;
+
+      .icon{
+          display: flex;
+      }
+  }
+  .icon{
+      position: absolute;
+      top: 0;
+      left: 25%;
+      transform: translate(-50%, -50%);
+      background-color: #FFF;
+      border-radius: 50%;
+      font-size:24px;
+      padding: 10px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      display: none;
+
+
+
+
+  }
+}
+
+.signup-choice .choice-item:last-child {
+  border-right: none;
+}
+
+/* .signup-choice .choice-item.active {
+  border: 2px solid #333;
+
+} */
+
+.signup-form .form-control {
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.signup-form .btn-signup {
+  background-color: #e41321;
+  color: #ffffff;
+  padding: 15px;
+  width: 100%;
+  font-weight: bold;
+  border-radius: 25px;
+}
+
+.legal-text {
+  font-size: 12px;
+  color: #6c757d;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.login-form .form-control {
+  border: none;
+  border-bottom: 1px solid #ced4da;
+  border-radius: 0;
+  padding: 15px 0;
+}
+
+.login-form .form-control:focus {
+  box-shadow: none;
+  border-bottom-color: #e41321;
+}
+
 /* Footer Styles */
 .footer {
   background-color: #1a0044;
