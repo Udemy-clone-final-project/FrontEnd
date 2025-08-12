@@ -1,0 +1,55 @@
+
+      <form [formGroup]="authForm" (ngSubmit)="onSubmit()" class="signup-form" >
+
+        <!-- Email -->
+          <div class="mb-3">
+              <input type="email" class="form-control" [placeholder]="mode === 'signup' ? 'Email' : 'Email or Username'" formControlName="email" required>
+              @if(authForm.get('email')?.invalid && authForm.get('email')?.touched) {
+                <small class="text-danger">Email is required</small>
+              }
+          </div>
+
+         @if(mode === 'signup' && role === 'customer') {
+           <!-- Username -->
+           <div class="mb-3">
+            <input type="text" class="form-control" placeholder="User Name" formControlName="username" required>
+            @if(authForm.get('username')?.invalid && authForm.get('username')?.touched) {
+              <small class="text-danger">Username is required</small>
+            }
+        </div>
+         }
+
+          @if(role === 'artist') {
+            <!-- Shop Name -->
+            <div class="mb-3">
+                <input type="text" class="form-control" placeholder="Shop Name" formControlName="shopname" required>
+                @if(authForm.get('shopname')?.invalid && authForm.get('shopname')?.touched) {
+                  <small class="text-danger">Shop Name is required</small>
+                }
+            </div>
+          }
+
+          <!-- Password -->
+          <div class="mb-3">
+              <input type="password" class="form-control" placeholder="Password" formControlName="password" required minlength="6">
+              @if(authForm.get('password')?.invalid && authForm.get('password')?.touched) {
+                <small class="text-danger">Password is required</small>
+              }
+          </div>
+
+          @if(mode === 'signup') {
+           <!-- Special Offers -->
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" value="" id="specialOffers" formControlName="specialOffers">
+            <label class="form-check-label" for="specialOffers">
+                Email me special offers and artist news.
+            </label>
+        </div>
+          }
+
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-signup">{{ mode === 'signup' ? 'Sign Up' : 'Log In' }}</button>
+
+          <!-- Login Link -->
+      </form>
+
