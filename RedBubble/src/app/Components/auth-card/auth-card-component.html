@@ -1,0 +1,43 @@
+<main class="signup-section">
+  <div class="signup-container">
+    @if(mode === 'signup') {
+      <h2 class="text-center">Join Redbubble</h2>
+      <p class="text-center text-muted">Sign up as a customer for 25% off your first order. Your coupon will be emailed after sign up.</p>
+    }
+    @if(mode === 'login') {
+      <h2 class="text-center">Log In</h2>
+      <p class="text-center">
+        Need an account? <a routerLink="/auth/signup">Sign Up</a>
+      </p>
+
+    }
+
+    @if(mode === 'signup') {
+      <div class="signup-choice">
+        <label class="choice-item" [class.active]="selectedRole === 'artist'" for="artist-signup" (click)="setRole('artist')">
+          <input type="radio" name="signup-choice" id="artist-signup" class="d-none" [checked]="selectedRole === 'artist'">
+            <img  src="/images/icons/artist-pappers.svg" alt="Artist Pappers">
+            <i class="bi bi-check-lg icon"></i>
+            <h5>Artist signup</h5>
+            <p>Set up shop and start selling your designs</p>
+        </label>
+        <label class="choice-item" [class.active]="selectedRole === 'customer'" for="customer-signup" (click)="setRole('customer')">
+          <input type="radio" name="signup-choice" id="customer-signup" class="d-none" [checked]="selectedRole === 'customer'">
+          <img  src="/images/icons/shop-cart.svg" alt="">
+          <i class="bi bi-check-lg icon"></i>
+            <h5>Customer signup</h5>
+            <p>Browse the marketplace and find your thing</p>
+        </label>
+      </div>
+
+    }
+      <app-auth-form-component [mode]="mode" [role]="selectedRole" (formSubmit)="onFormSubmit($event)"></app-auth-form-component>
+
+      @if(mode === 'signup') {
+
+        <p class="text-center mt-3">Already have an account? <a routerLink="/auth/login">Log In</a></p>
+        <p class="legal-text">By clicking Sign Up, you agree to our <a href="#">User Agreement</a> and <a href="#">Privacy Policy</a>.</p>
+        }
+        <p class="legal-text">This site is protected by reCAPTCHA and the Google <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply.</p>
+  </div>
+</main>
