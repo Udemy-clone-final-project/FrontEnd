@@ -4,8 +4,13 @@ import { AuthCardComponent } from './Components/auth-card/auth-card-component';
 
 export const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     component: HomeComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: '',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {

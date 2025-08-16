@@ -38,6 +38,16 @@
           </div>
 
           @if(mode === 'signup') {
+            <!-- Confirm Password -->
+            <div class="mb-3">
+                <input type="password" class="form-control" placeholder="Confirm Password" formControlName="confirmPassword" required>
+                @if(authForm.get('confirmPassword')?.touched && authForm.hasError('passwordsMismatch')) {
+                  <small class="text-danger">Passwords do not match</small>
+                }
+            </div>
+          }
+
+          @if(mode === 'signup') {
            <!-- Special Offers -->
           <div class="form-check mb-3">
             <input class="form-check-input" type="checkbox" value="" id="specialOffers" formControlName="specialOffers">
