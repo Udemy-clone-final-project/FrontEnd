@@ -3,10 +3,11 @@ import { HomeComponent } from './Pages/home/home.component';
 import { CategoryComponent } from './Pages/category-page/category';
 import { ProductsPage } from './Pages/products-page/products-page';
 import { AuthCardComponent } from './Components/auth-card/auth-card-component';
+import { ProductDetails } from './Pages/product-details/product-details';
 
 export const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     component: HomeComponent,
     pathMatch: 'full'
   },
@@ -16,6 +17,11 @@ export const routes: Routes = [
      { path: 'theme/:themeId', component: ProductsPage },
      
      // press sub-cat or theme ==> productspage
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
   {
     path: 'auth',
     children: [
@@ -35,6 +41,11 @@ export const routes: Routes = [
         pathMatch: 'full'
       }
     ]
+  },
+  {
+    path: 'products/:id',
+    component: ProductDetails,
+    pathMatch: 'full'
   }
 
 ];

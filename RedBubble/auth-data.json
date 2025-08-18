@@ -1,0 +1,27 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "email": "artist@example.com",
+      "username": "coolartist",
+      "password": "123456",
+      "role": "artist"
+    },
+    {
+      "id": "2",
+      "email": "customer@example.com",
+      "username": "happybuyer",
+      "password": "654321",
+      "role": "customer"
+    },
+    {
+      "id": "005f",
+      "email": "ahmedalsadq13@gmail.com",
+      "password": "123456789",
+      "confirmPassword": "123456789",
+      "username": "sadek",
+      "specialOffers": true,
+      "role": "customer"
+    }
+  ]
+}

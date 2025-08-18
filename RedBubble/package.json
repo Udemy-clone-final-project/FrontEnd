@@ -4,6 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "serve:auth": "json-server-auth auth-data.json",
+    "serve:catalog": "json-server --watch db.catalog.json --port 3001",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -36,6 +38,8 @@
     "@angular/compiler-cli": "^20.1.0",
     "@types/jasmine": "~5.1.0",
     "jasmine-core": "~5.8.0",
+    "json-server": "1.0.0-beta.3",
+    "json-server-auth": "^2.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",

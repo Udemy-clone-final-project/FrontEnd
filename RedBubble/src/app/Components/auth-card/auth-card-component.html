@@ -1,5 +1,6 @@
 <main class="signup-section">
   <div class="signup-container">
+    <app-alert [message]="alertMessage" [type]="alertType"></app-alert>
     @if(mode === 'signup') {
       <h2 class="text-center">Join Redbubble</h2>
       <p class="text-center text-muted">Sign up as a customer for 25% off your first order. Your coupon will be emailed after sign up.</p>
