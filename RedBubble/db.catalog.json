@@ -1,0 +1,71 @@
+{
+  "products": [
+    {
+      "id": 2527,
+      "slug": "uss-enterprise-star-trek-classic-t-shirt",
+      "title": "USS Enterprise Star Trek Classic T-Shirt",
+      "description": "Classic, generous, boxy fit; heavyweight fabric; durable double-needle hems.",
+      "price": 21.92,
+      "currency": "USD",
+      "images": [
+        "/images/products/black-t-shirt.webp",
+        "/images/products/black-t-shirt.webp"
+      ],
+      "style": "Classic T-Shirt",
+      "colors": [
+        { "code": "#101010", "name": "Black", "isLight": false },
+        { "code": "#ffffff", "name": "White", "isLight": true },
+        { "code": "#c7c7c7", "name": "Heather Grey", "isLight": true }
+      ],
+      "sizes": ["S", "M", "L", "XL", "2XL"],
+      "tags": ["star trek", "uss enterprise", "ncc 1701"],
+      "artist": { "id": 1, "name": "A&C Media" }
+    },
+    {
+      "id": 9991,
+      "slug": "retro-future-spaceship-tee",
+      "title": "Retro Future Spaceship Tee",
+      "description": "Soft tri-blend feel with a vintage print finish.",
+      "price": 23.5,
+      "currency": "USD",
+      "images": [
+        "/images/products/black-t-shirt.webp"
+      ],
+      "style": "Tri-blend T-Shirt",
+      "colors": [
+        { "code": "#2c3e50", "name": "Navy", "isLight": false },
+        { "code": "#ffa500", "name": "Orange", "isLight": true }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "tags": ["space", "retro", "spaceship"],
+      "artist": { "id": 2, "name": "Lighthouse Art" }
+    },
+    {
+      "id": 1234,
+      "slug": "retro-future-spaceship-tee-2",
+      "title": "Retro Future Spaceship Tee 2",
+      "description": "Soft tri-blend feel with a vintage print finish.",
+      "price": 23.5,
+      "currency": "USD",
+      "images": [
+        "/images/products/black-t-shirt.webp",
+        "/images/products/black-t-shirt.webp"
+      ],
+      "style": "Tri-blend T-Shirt 2",
+      "colors": [
+        { "code": "#2c3e50", "name": "Navy", "isLight": false },
+        { "code": "#ffa500", "name": "Orange", "isLight": true }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "tags": ["space", "retro", "spaceship"],
+      "artist": { "id": 2, "name": "Lighthouse Art" }
+    }
+  ],
+  "categories": [
+    { "id": 1, "name": "T-Shirts", "slug": "t-shirts" }
+  ],
+  "related": [
+    { "productId": 2527, "relatedId": 9991 },
+    { "productId": 9991, "relatedId": 2527 }
+  ]
+}

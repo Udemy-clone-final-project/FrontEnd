@@ -1,14 +1,17 @@
-import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http';
-import { provideReactiveForms } from '@angular/forms';
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes),
-    provideHttpClient(),
-    provideReactiveForms(),
-  ]
+    provideRouter(routes, withComponentInputBinding()),
+    importProvidersFrom(FormsModule, ReactiveFormsModule),
+    provideHttpClient(withInterceptorsFromDi()),
+  ],
 };
