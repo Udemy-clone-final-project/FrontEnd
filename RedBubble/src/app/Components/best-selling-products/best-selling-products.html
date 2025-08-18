@@ -1,0 +1,12 @@
+<h1>Best Selling</h1>
+<div class="best-selling">
+  <div class="product-list">
+    <div *ngFor="let product of bestSelling" class="product-card">
+      <a [routerLink]="product.id">
+        <img [src]="product.image" [alt]="product.title" />
+        <p>{{ product.title }}</p>
+        <p class="price">${{ product.price }}</p>
+      </a>
+    </div>
+  </div>
+</div>
