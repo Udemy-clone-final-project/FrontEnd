@@ -1,0 +1,52 @@
+.base-product-card {
+  max-width: 250px;
+  border: none;
+  aspect-ratio: 3/4;
+  display: block;
+  color: var(--black);
+  text-decoration: none;
+  &:hover {
+    img {
+      transform: scale(1.5);
+    }
+  }
+  .img-container {
+    overflow: hidden;
+    position: relative;
+    img {
+      aspect-ratio: 1/1;
+      max-width: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    i {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 20px;
+      color: var(--grey-color);
+      cursor: pointer;
+      background-color: var(--white);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+      aspect-ratio: 1/1;
+    }
+  }
+  .card-body {
+    padding-block: 12px;
+    .card-title {
+      font-size: 14px;
+      margin-bottom:10px;
+      font-weight: normal;
+    }
+    .artist{font-size: 12px; color:var(--text-muted)}
+    .price{font-weight: 600;}
+  }
+
+}

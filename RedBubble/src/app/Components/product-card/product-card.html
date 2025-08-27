@@ -1,5 +1,15 @@
-<div class="product-card">
-  <img [src]="product.image" [alt]="product.name">
-  <h3>{{ product.name }}</h3>
-  <p>{{ product.price | currency }}</p>
-</div>
+
+<a [routerLink]="['/products', product.id]" class="base-product-card">
+  <div class="img-container">
+    <img
+      [src]="product.images[0] || '/images/products/black-t-shirt.webp'"
+      alt="{{ product.title }}"
+    />
+    <i class="bi bi-heart"></i>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{ product.title }}</h5>
+    <p class="card-text artist">by {{ product.artist.name }}</p>
+    <p class="card-text price">{{ product.price | currency:product.currency || '$' }}</p>
+  </div>
+</a>

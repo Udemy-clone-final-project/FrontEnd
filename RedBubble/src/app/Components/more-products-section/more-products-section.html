@@ -1,0 +1,25 @@
+<section class="more-products-section my-6">
+
+  <h2>{{ titleSignal() }}</h2>
+  <!-- Carousel for "Also available on" -->
+  <div
+    id="alsoAvailableCarousel"
+    class="carousel slide"
+    data-bs-ride="carousel"
+  >
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="row">
+          @for(p of productsSignal(); track p.id) {
+          <div class="col-12 col-lg-4 col-xl-2">
+            <app-product-card [product]="p"></app-product-card>
+          </div>
+          }
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</section>

@@ -1,12 +1,17 @@
 import { Component, Input } from '@angular/core';
-import { Product } from '../../Models/product';
 
+import { CommonModule } from '@angular/common';
+import { ProductDto } from '../../Services/product.service';
+import { RouterModule } from '@angular/router';
+import { CurrencyPipe } from '@angular/common';
+import { Product } from '../../Models/product';
+  
 @Component({
   selector: 'app-product-card',
-  imports: [],
+  imports: [CommonModule,RouterModule,CurrencyPipe],
   templateUrl: './product-card.html',
   styleUrl: './product-card.css'
 })
 export class ProductCard {
-  @Input() product?:Product;
+  @Input() product!: ProductDto;
 }
