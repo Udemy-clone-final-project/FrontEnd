@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './Pages/home/home.component';
 import { AuthCardComponent } from './Components/auth-card/auth-card-component';
 import { ProductDetails } from './Pages/product-details/product-details';
+import { NotFound } from './Pages/not-found/not-found';
 
 export const routes: Routes = [
   {
@@ -38,6 +39,11 @@ export const routes: Routes = [
     path: 'products/:id',
     component: ProductDetails,
     pathMatch: 'full'
+  },
+  {
+    path:'**',
+    component:NotFound,
+    pathMatch:'full'
   }
 
 ];

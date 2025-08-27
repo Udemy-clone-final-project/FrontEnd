@@ -36,7 +36,7 @@
         { "code": "#2c3e50", "name": "Navy", "isLight": false },
         { "code": "#ffa500", "name": "Orange", "isLight": true }
       ],
-      "sizes": ["S", "M", "L", "XL"],
+      "sizes": [ "M", "L", "XL"],
       "tags": ["space", "retro", "spaceship"],
       "artist": { "id": 2, "name": "Lighthouse Art" }
     },
@@ -56,8 +56,28 @@
         { "code": "#2c3e50", "name": "Navy", "isLight": false },
         { "code": "#ffa500", "name": "Orange", "isLight": true }
       ],
-      "sizes": ["S", "M", "L", "XL"],
+      "sizes": ["S", "M", "L", "XL", "2XL"],
       "tags": ["space", "retro", "spaceship"],
+      "artist": { "id": 2, "name": "Lighthouse Art" }
+    },
+    {
+      "id": 1235,
+      "slug": "retro-future-spaceship-tee-3",
+      "title": "Retro Future Spaceship Tee 3",
+      "description": "Soft tri-blend feel with a vintage print finish.",
+      "price": 23.5,
+      "currency": "USD",
+      "images": [
+        "/images/products/t-shirt-oversize-black.jpg",
+        "/images/products/t-shirt-oversize-black.jpg"
+      ],
+      "style": "Oversized T-Shirt",
+      "colors": [
+        { "code": "#101010", "name": "Black", "isLight": false },
+        { "code": "#ffffff", "name": "White", "isLight": true }
+      ],
+      "sizes": ["S", "M", "L", "XL"],
+      "tags": ["space", "retro", "spaceship", "oversized"],
       "artist": { "id": 2, "name": "Lighthouse Art" }
     }
   ],
@@ -66,6 +86,9 @@
   ],
   "related": [
     { "productId": 2527, "relatedId": 9991 },
-    { "productId": 9991, "relatedId": 2527 }
+    { "productId": 2527, "relatedId": 1234 },
+    { "productId": 2527, "relatedId": 1235 },
+    { "productId": 1234, "relatedId": 2527 },
+    { "productId": 1235, "relatedId": 2527 }
   ]
 }

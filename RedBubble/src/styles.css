@@ -1,7 +1,7 @@
 :root {
   /* Core palette (generic names) */
   --primary: #ff596f;
-  --primary-dark: #1a0044;
+  --primary-dark: #19124F;
   --primary-light: #f39c12;
   --secondary: #2c3e50;
   --accent: #007bff;
@@ -18,13 +18,13 @@
   --footer-border: #4a3c6a;
   --footer-link: #6d599c;
 
-  /* Status colors */
-  --success: #0ff;
-  --warning: #ff0;
-  --error: #f0f;
 
   /* Surfaces */
   --surface-muted: #f8f8f8;
+
+  /* General Colors */
+  --gold: #ffbc59;
+  --light-purple:#AFA3F2
 }
 ul{
   list-style: none;
@@ -32,6 +32,11 @@ ul{
 }
 a{
   text-decoration: none;
+  color:var(--primary);
+  &:hover{
+    text-decoration: underline;
+    color:var(--primary)
+  }
 
 }
 
@@ -55,13 +60,118 @@ h4{
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  color:var(--primary-dark);
+  font-size:1rem;
 }
 
 main {
   flex: 1;
 }
 
+hr{
+  border-color:var(--text-muted)
+}
+
+
+/* === Utility Classes for Colors and Backgrounds === */
+
+/* Text color utilities */
+.text-primary {
+  color: var(--primary) !important;
+}
+.text-primary-dark {
+  color: var(--primary-dark) !important;
+}
+.text-secondary {
+  color: var(--secondary) !important;
+}
+
+.text-danger {
+  color: var(--danger) !important;
+}
+.text-warning {
+  color: var(--warning) !important;
+}
+.text-info {
+  color: var(--info) !important;
+}
+.text-muted {
+  color: var(--text-muted) !important;
+}
+.text-gold {
+  color: var(--gold) !important;
+}
+.text-white {
+  color: var(--white) !important;
+}
+.text-black {
+  color: var(--black) !important;
+}
+
+/* Background color utilities */
+.bg-primary {
+  background-color: var(--primary) !important;
+}
+.bg-primary-dark {
+  background-color: var(--primary-dark) !important;
+}
+.bg-secondary {
+  background-color: var(--secondary) !important;
+}
+
+.bg-danger {
+  background-color: var(--danger) !important;
+}
+.bg-warning {
+  background-color: var(--warning) !important;
+}
+.bg-info {
+  background-color: var(--info) !important;
+}
+.bg-muted {
+  background-color: var(--surface-muted) !important;
+}
+.bg-gold {
+  background-color: var(--gold) !important;
+}
+.bg-white {
+  background-color: var(--white) !important;
+}
+.bg-black {
+  background-color: var(--black) !important;
+}
+
+/* Border color utilities */
+.border-primary {
+  border-color: var(--primary) !important;
+}
+.border-primary-dark {
+  border-color: var(--primary-dark) !important;
+}
+.border-secondary {
+  border-color: var(--secondary) !important;
+}
+
+.border-danger {
+  border-color: var(--danger) !important;
+}
+.border-warning {
+  border-color: var(--warning) !important;
+}
+.border-info {
+  border-color: var(--info) !important;
+}
+.border-gold {
+  border-color: var(--gold) !important;
+}
+.border-white {
+  border-color: var(--white) !important;
+}
+.border-black {
+  border-color: var(--black) !important;
+}
+
+/* Example: .bg-primary .text-white for button, .text-muted for secondary text, etc. */
 
 
 .btn {
@@ -72,11 +182,16 @@ main {
   user-select: none;
   border: none;
   padding: 0.5rem 1.25rem;
-  font-size: 1rem;
+  font-size: 1.2rem;
   line-height: 1.5;
   border-radius: 5px;
   transition: background 0.2s, color 0.2s, box-shadow 0.2s;
   cursor: pointer;
+
+
+  border-radius: 50px;
+  padding: 15px 20px;
+
 }
 
 .btn-primary {
