@@ -79,6 +79,25 @@
       "sizes": ["S", "M", "L", "XL"],
       "tags": ["space", "retro", "spaceship", "oversized"],
       "artist": { "id": 2, "name": "Lighthouse Art" }
+    },
+    {
+      "id": 5678,
+      "slug": "ramona-essential-tshirt-heather-grey",
+      "title": "Ramona Essential T-Shirt",
+      "description": "Classic fit, soft cotton feel. Heather Grey, Front print, size L. Perfect for everyday comfort and style.",
+      "price": 19.99,
+      "currency": "USD",
+      "images": [
+        "/images/products/heather-mid-grey-front.webp",
+        "/images/products/heather-mid-grey-back.webp"
+      ],
+      "style": "Essential T-Shirt",
+      "colors": [
+        { "code": "#b7b7b7", "name": "Heather Grey", "isLight": true }
+      ],
+      "sizes": ["L"],
+      "tags": ["ramona", "essential", "heather grey", "front print", "t-shirt"],
+      "artist": { "id": 3, "name": "Ramona Designs" }
     }
   ],
   "categories": [
@@ -89,6 +108,7 @@
     { "productId": 2527, "relatedId": 1234 },
     { "productId": 2527, "relatedId": 1235 },
     { "productId": 1234, "relatedId": 2527 },
-    { "productId": 1235, "relatedId": 2527 }
+    { "productId": 1235, "relatedId": 2527 },
+    { "productId": 5678, "relatedId": 2527 }
   ]
 }

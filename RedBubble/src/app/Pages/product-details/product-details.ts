@@ -19,7 +19,6 @@ import { of } from 'rxjs';
   imports: [
     CommonModule,
     CurrencyPipe,
-    ProductCard,
     RouterModule,
     MoreProductsSection,
   ],
