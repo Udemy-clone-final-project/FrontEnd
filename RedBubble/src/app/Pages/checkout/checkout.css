@@ -1,0 +1,32 @@
+.object-fit-cover{object-fit:cover}
+.extra-fields{max-height:0;overflow:hidden;opacity:.0;transition:max-height .3s ease, opacity .2s ease}
+.extra-fields.show{max-height:500px;opacity:1}
+
+/* Page background */
+.checkout-page{background-color:#f8f9fb;padding-bottom:2rem}
+
+/* Card spacing */
+.checkout-card{border-radius:12px; box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.checkout-card .card-body{padding:1.25rem 1.25rem}
+
+/* Step circle */
+.step-circle{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#0d6efd;color:#fff;font-weight:600;font-size:.85rem}
+
+/* Shipping options */
+.shipping-option{border:1px solid #e5e7eb; border-radius:10px; margin-bottom:.5rem}
+.shipping-option.active{border-color:#0d6efd; box-shadow:0 0 0 3px rgba(13,110,253,.1)}
+.shipping-option input{margin-top:.35rem}
+
+/* Buttons */
+.btn-continue{padding:.6rem 1.25rem; min-width:240px; border-radius:999px}
+
+/* Form spacing */
+.form-label{margin-bottom:.35rem}
+.form-control,.form-select{padding:.6rem .75rem}
+
+/* Payment accordion */
+.payment-accordion .accordion-item{border:1px solid #e5e7eb; border-radius:10px; overflow:hidden; margin-bottom:.5rem}
+.payment-accordion .accordion-header{cursor:pointer}
+.payment-accordion .accordion-item.active{border-color:#0d6efd; box-shadow:0 0 0 3px rgba(13,110,253,.1)}
+.payment-accordion .accordion-body{padding:1rem}
+

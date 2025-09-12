@@ -1,0 +1,13 @@
+/* Minimal styling matching the app look */
+.coupon-input {
+  border-radius: 12px;
+}
+
+.object-fit-cover {
+  object-fit: cover;
+}
+
+.list-group-item .btn-link {
+  text-decoration: none;
+}
+

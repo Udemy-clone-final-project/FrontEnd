@@ -1,4 +1,4 @@
-import { Injectable, signal, effect } from '@angular/core';
+import { Injectable, signal, effect, computed } from '@angular/core';
 import { ProductDto } from './product.service';
 
 export interface CartItem {
@@ -7,57 +7,131 @@ export interface CartItem {
   title: string;
   price: number;
   currency: string;
-  variant: {color: string, size: string};
+  variant: { color: string; size: string };
   qty: number;
 }
 
-@Injectable({providedIn: 'root'})
-
-export class CartService{
+@Injectable({ providedIn: 'root' })
+export class CartService {
   private _items = signal<CartItem[]>([]);
-private _totalItem = signal(0);
+  private _shippingPrices: Record<'standard' | 'express', number> = {
+    standard: 0,
+    express: 44.05,
+  };
+  totalItems = computed(() => this._items().reduce((sum, i) => sum + i.qty, 0));
+  subtotal = computed(() =>
+    this._items().reduce((sum, i) => sum + i.price * i.qty, 0)
+  );
+
   items = this._items.asReadonly();
 
-  add(item:{productId: number,images: string[],title: string, price:number, currency: string, variant: {color: string, size: string}, qty: number}){
+  shippingType = signal<'standard' | 'express'>(
+    (localStorage.getItem('cart.shippingType') as 'standard' | 'express') ??
+      'standard'
+  );
+  shippingCost = computed(() => this._shippingPrices[this.shippingType()]);
+  totalWithShipping = computed(() => this.subtotal() + this.shippingCost());
 
-    const product = this.items().find(i=>i.productId === item.productId) || { productId: item.productId, title: 'Unknown', price: 0, currency: 'USD', images: [], style: '', colors: [], sizes: [], tags: [], artist: { id: 0, name: '' } };
-    const existing = this.items().find(i=>i.productId === item.productId && i.variant.color === item.variant.color && i.variant.size === item.variant.size);
-    if(existing){
-      this._items.update(items=>items.map(i=>i.productId === item.productId ? {...i, qty: i.qty + item.qty} : i));
-      this._totalItem.set(this._totalItem() + item.qty);
+  setShippingType(type: 'standard' | 'express') {
+    this.shippingType.set(type);
+  }
+
+  constructor() {
+    // Hydrate from localStorage
+    try {
+      const raw = localStorage.getItem('cart.items');
+      if (raw) {
+        const parsed = JSON.parse(raw) as CartItem[];
+        if (Array.isArray(parsed)) {
+          this._items.set(parsed);
+        }
+      }
+    } catch {
+      // ignore hydration errors
     }
-    else{
-      // Ensure the 'product' object matches the ProductDto type to avoid type errors
-      this._items.update(items => [
+
+    // Persist on change
+    effect(() => {
+      try {
+        const current = this._items();
+        localStorage.setItem('cart.items', JSON.stringify(current));
+      } catch {
+        // ignore persistence errors
+      }
+    });
+
+    // persist shipping type
+    effect(() =>
+      localStorage.setItem(
+        'cart.shippingType',
+        JSON.stringify(this.shippingType())
+      )
+    );
+  }
+
+  private isSameLine(
+    item1: CartItem,
+    item2: { productId: number; variant: { color: string; size: string } }
+  ) {
+    return (
+      item1.productId === item2.productId &&
+      item1.variant.color === item2.variant.color &&
+      item1.variant.size === item2.variant.size
+    );
+  }
+
+  changeQuantity(
+    line: { productId: number; variant: { color: string; size: string } },
+    delta: number
+  ) {
+    this._items.update((items) => {
+      return items
+        .map((i) =>
+          this.isSameLine(i, line) ? { ...i, qty: i.qty + delta } : i
+        )
+        .filter((i) => i.qty > 0);
+    });
+  }
+
+  add(item: CartItem) {
+    const existing = this.items().find((i) => this.isSameLine(i, item));
+
+    if (existing) {
+      this.changeQuantity(item, item.qty);
+    } else {
+      // Ensure the 'item' object matches the CartItem type to avoid type errors
+      this._items.update((items) => [
         ...items,
         {
-          productId: item.productId,
-          images: item.images,
-          title: item.title,
-          price: item.price,
-          currency: item.currency,
-          variant: item.variant,
-          qty: item.qty
-        }
+          ...item,
+        },
       ]);
     }
   }
 
-  clear(){
+  clear() {
     this._items.set([]);
   }
 
-  remove(item:{productId: number, variant: {color: string, size: string}}){
-    this._items.update(items=>items.filter(i=>i.productId !== item.productId || i.variant.color !== item.variant.color || i.variant.size !== item.variant.size));
+  remove(item: {
+    productId: number;
+    variant: { color: string; size: string };
+  }) {
+    this._items.update((items) =>
+      items.filter(
+        (i) =>
+          i.productId !== item.productId ||
+          i.variant.color !== item.variant.color ||
+          i.variant.size !== item.variant.size
+      )
+    );
   }
 
-  getTotalItem(){
-    return this._totalItem();
+  getTotalItem() {
+    return this.totalItems();
   }
 
-  getTotalPrice(){
-    return this.items().reduce((sum, item)=>sum + item.price * item.qty, 0);
+  getTotalPrice() {
+    return this.subtotal();
   }
-
-
 }
