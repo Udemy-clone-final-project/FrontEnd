@@ -1,0 +1,14 @@
+<h1>Sub Categories</h1>
+
+<div class="sub-categories">
+  <div class="sub-category-list">
+    <div *ngFor="let sub of subCategories" class="sub-category-card"  (click)="goToProducts(sub.id)">
+      
+        <img [src]="sub.image" [alt]="sub.title" />
+        <p>{{ sub.title }}</p>
+       
+    </div>
+  </div>
+</div>
+
+ 

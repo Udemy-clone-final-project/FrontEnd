@@ -1,5 +1,9 @@
 import { Routes } from '@angular/router';
+
 import { Home } from './Pages/home/home';
+import { CategoryComponent } from './Pages/category-page/category';
+import { ProductsPage } from './Pages/products-page/products-page';
+
 import { AuthCardComponent } from './Components/auth-card/auth-card-component';
 import { ProductDetails } from './Pages/product-details/product-details';
 import {Cart} from './Pages/cart/cart';
@@ -12,6 +16,12 @@ export const routes: Routes = [
     component: Home,
     pathMatch: 'full'
   },
+      // { path: 'category/:categoryId', component: CategoryPageComponent }, // category page
+     { path: 'category/:id', component: CategoryComponent },
+     { path: 'subcategory/:subCatId', component: ProductsPage },
+     { path: 'theme/:themeId', component: ProductsPage },
+     
+     // press sub-cat or theme ==> productspage
   {
     path: '',
     redirectTo: 'home',
@@ -59,3 +69,15 @@ export const routes: Routes = [
   }
 
 ];
+
+// Navigation Tree Diagram in RedBubble
+
+// HOME (/home)
+// │
+// └── Category Page (/category/:categoryId)
+//     │
+//     ├── Subcategories List
+//     │     └── Products Page (/category/:categoryId/subcategory/:subCatId/products)
+//     │
+//     └── Themes List
+//           └── Products Page (/category/:categoryId/theme/:themeId/products)

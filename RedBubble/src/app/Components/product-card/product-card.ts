@@ -1,8 +1,11 @@
 import { Component, Input } from '@angular/core';
+
 import { CommonModule } from '@angular/common';
 import { ProductDto } from '../../Services/product.service';
 import { RouterModule } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
+import { Product } from '../../Models/product';
+  
 @Component({
   selector: 'app-product-card',
   imports: [CommonModule,RouterModule,CurrencyPipe],

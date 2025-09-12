@@ -7,11 +7,12 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { routes } from './app.routes';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes, withComponentInputBinding()),
+    provideZoneChangeDetection({ eventCoalescing: true }),
     importProvidersFrom(FormsModule, ReactiveFormsModule),
-    provideHttpClient(withInterceptorsFromDi()),
-  ],
+    provideHttpClient(withInterceptorsFromDi()),        
+  ]
 };
