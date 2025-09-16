@@ -5,6 +5,7 @@ import { ProductDetails } from './Pages/product-details/product-details';
 import {Cart} from './Pages/cart/cart';
 import { Checkout } from './Pages/checkout/checkout';
 import { NotFound } from './Pages/not-found/not-found';
+import { Shop } from './Pages/shop/shop';
 
 export const routes: Routes = [
   {
@@ -36,6 +37,16 @@ export const routes: Routes = [
         pathMatch: 'full'
       }
     ]
+  },
+  {
+    path: 'shop',
+    component: Shop,
+    pathMatch: 'full'
+  },
+  {
+    path: 'shop/tag/:slug',
+    component: Shop,
+    pathMatch: 'full'
   },
   {
     path: 'products/:id',

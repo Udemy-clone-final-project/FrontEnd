@@ -103,6 +103,15 @@
   "categories": [
     { "id": 1, "name": "T-Shirts", "slug": "t-shirts" }
   ],
+  "tags": [
+    { "id": 1, "name": "Music", "slug": "music" },
+    { "id": 2, "name": "Band", "slug": "band" },
+    { "id": 3, "name": "Movies", "slug": "movies" },
+    { "id": 4, "name": "Animals", "slug": "animals" },
+    { "id": 5, "name": "Trendy", "slug": "trendy" },
+    { "id": 6, "name": "Culture", "slug": "culture" },
+    { "id": 7, "name": "Games", "slug": "games" }
+  ],
   "related": [
     { "productId": 2527, "relatedId": 9991 },
     { "productId": 2527, "relatedId": 1234 },
@@ -110,5 +119,35 @@
     { "productId": 1234, "relatedId": 2527 },
     { "productId": 1235, "relatedId": 2527 },
     { "productId": 5678, "relatedId": 2527 }
-  ]
+  ],
+  "sizeGuides": {
+    "men": {
+      "units": {
+        "in": {
+          "sizes": ["S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL"],
+          "chest": [18, 20, 22, 24, 26, 28, 30, 32],
+          "length": [28, 29, 30, 31, 32, 33, 34, 35]
+        },
+        "cm": {
+          "sizes": ["S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL"],
+          "chest": [45.7, 50.8, 55.9, 61.0, 66.0, 71.1, 76.2, 81.3],
+          "length": [71.1, 73.7, 76.2, 78.7, 81.3, 83.8, 86.4, 88.9]
+        }
+      }
+    },
+    "women": {
+      "units": {
+        "in": {
+          "sizes": ["S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL"],
+          "chest": [18, 20, 22, 24, 26, 28, 30, 32],
+          "length": [28, 29, 30, 31, 32, 33, 34, 35]
+        },
+        "cm": {
+          "sizes": ["S", "M", "L", "XL", "2XL", "3XL", "4XL", "5XL"],
+          "chest": [45.7, 50.8, 55.9, 61.0, 66.0, 71.1, 76.2, 81.3],
+          "length": [71.1, 73.7, 76.2, 78.7, 81.3, 83.8, 86.4, 88.9]
+        }
+      }
+    }
+  }
 }

@@ -7,7 +7,7 @@ import { CurrencyPipe } from '@angular/common';
   selector: 'app-product-card',
   imports: [CommonModule,RouterModule,CurrencyPipe],
   templateUrl: './product-card.html',
-  styleUrl: './product-card.css'
+  styleUrls: ['./product-card.css']
 })
 export class ProductCard {
   @Input() product!: ProductDto;

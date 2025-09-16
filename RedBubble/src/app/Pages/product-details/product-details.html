@@ -360,7 +360,6 @@
         ></button>
       </div>
       <div class="modal-body">
-        <!-- Cleaned up content from user -->
         <div class="text-center">
           <img
             src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27140%27%20height=%2783%27/%3e"
@@ -373,47 +372,17 @@
         <div class="row">
           <div class="col-6">
             <div class="btn-group w-100">
-              <input
-                type="radio"
-                class="btn-check"
-                name="gender"
-                id="gender-men"
-                autocomplete="off"
-                checked
-              />
-              <label class="btn btn-outline-secondary" for="gender-men"
-                >Men</label
-              >
-              <input
-                type="radio"
-                class="btn-check"
-                name="gender"
-                id="gender-women"
-                autocomplete="off"
-              />
-              <label class="btn btn-outline-secondary" for="gender-women"
-                >Women</label
-              >
+              <input type="radio" class="btn-check" name="gender" id="gender-men" autocomplete="off" [checked]="selectedGender() === 'men'" (change)="onGenderChange('men')" />
+              <label class="btn btn-outline-secondary" for="gender-men">Men</label>
+              <input type="radio" class="btn-check" name="gender" id="gender-women" autocomplete="off" [checked]="selectedGender() === 'women'" (change)="onGenderChange('women')" />
+              <label class="btn btn-outline-secondary" for="gender-women">Women</label>
             </div>
           </div>
           <div class="col-6">
             <div class="btn-group w-100">
-              <input
-                type="radio"
-                class="btn-check"
-                name="units"
-                id="units-in"
-                autocomplete="off"
-                checked
-              />
+              <input type="radio" class="btn-check" name="units" id="units-in" autocomplete="off" [checked]="selectedUnit() === 'in'" (change)="onUnitChange('in')" />
               <label class="btn btn-outline-secondary" for="units-in">IN</label>
-              <input
-                type="radio"
-                class="btn-check"
-                name="units"
-                id="units-cm"
-                autocomplete="off"
-              />
+              <input type="radio" class="btn-check" name="units" id="units-cm" autocomplete="off" [checked]="selectedUnit() === 'cm'" (change)="onUnitChange('cm')" />
               <label class="btn btn-outline-secondary" for="units-cm">CM</label>
             </div>
           </div>
@@ -422,39 +391,26 @@
         <div class="mt-4">
           <h5>Find your fit</h5>
           <p>Standard fit, order a size up if you prefer a looser fit.</p>
-          <!-- Fit indicator can be added here if needed -->
         </div>
 
-        <div class="mt-4">
+        <div class="mt-4" *ngIf="currentUnit() as unit">
           <h5>Product Measurements</h5>
           <div class="table-responsive">
             <table class="table table-bordered text-center">
               <thead>
                 <tr>
                   <th>Size</th>
-                  <th>S</th>
-                  <th>M</th>
-                  <th>L</th>
-                  <th>XL</th>
-                  <th>2XL</th>
+                  @for (s of unit.sizes; track s) { <th>{{ s }}</th> }
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td><strong>Chest</strong></td>
-                  <td>18in</td>
-                  <td>20in</td>
-                  <td>22in</td>
-                  <td>24in</td>
-                  <td>26in</td>
+                  @for (c of unit.chest; track c) { <td>{{ c }}{{ selectedUnit() === 'in' ? 'in' : 'cm' }}</td> }
                 </tr>
                 <tr>
                   <td><strong>Length</strong></td>
-                  <td>28in</td>
-                  <td>29in</td>
-                  <td>30in</td>
-                  <td>31in</td>
-                  <td>32in</td>
+                  @for (l of unit.length; track l) { <td>{{ l }}{{ selectedUnit() === 'in' ? 'in' : 'cm' }}</td> }
                 </tr>
               </tbody>
             </table>
@@ -465,20 +421,12 @@
           <h5>How to choose the perfect size</h5>
           <ol>
             <li>Grab your favorite t-shirt and lay it flat.</li>
-            <li>
-              For the chest, measure 1in under the armpit, from seam to seam.
-            </li>
-            <li>
-              For the length, measure from the top of the shoulder to the bottom
-              of the shirt.
-            </li>
+            <li>For the chest, measure 1in under the armpit, from seam to seam.</li>
+            <li>For the length, measure from the top of the shoulder to the bottom of the shirt.</li>
             <li>Match this information to the size guide.</li>
           </ol>
         </div>
-        <small class="text-muted"
-          >*Product measurements refer to garment dimensions, not body
-          size</small
-        >
+        <small class="text-muted">*Product measurements refer to garment dimensions, not body size</small>
       </div>
     </div>
   </div>

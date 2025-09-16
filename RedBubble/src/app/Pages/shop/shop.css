@@ -1,0 +1,13 @@
+.page-header {
+  background: var(--white);
+}
+
+.filters .btn {
+  border-radius: 999px;
+}
+
+app-product-card {
+  display: block;
+}
+
+

@@ -56,13 +56,52 @@ This is the main, feature-rich version of the project.
     ```
 2.  Install the required dependencies:
     ```bash
-    npm install
+    pnpm install
     ```
 3.  Start the development server:
     ```bash
-    npm start
+    pnpm start
     ```
 4.  Open your browser and navigate to `http://localhost:4200/`.
+
+---
+### Mock Catalog API (serve:catalog)
+
+This project uses a local mock REST API powered by `json-server` for the catalog data.
+
+**Script**: `pnpm run serve:catalog`
+
+**Base URL**: `http://localhost:3001`
+
+**How to run (in a separate terminal):**
+```bash
+cd RedBubble
+pnpm run serve:catalog
+```
+
+The server watches `db.catalog.json` for changes and hot-reloads.
+
+**Available routes (examples):**
+- `GET /products`
+- `GET /products/:id`
+- `GET /products?slug=uss-enterprise-star-trek-classic-t-shirt`
+- `GET /categories`
+- `GET /related?productId=2527`
+
+**Useful query params (json-server):**
+- Full-text search: `q=spaceship`
+- Filter by field: `style=Classic%20T-Shirt`
+- Partial match: `tags_like=space`
+- Sort: `_sort=price&_order=asc`
+- Pagination: `_page=1&_limit=12`
+
+**Used by the app:**
+- `src/app/Services/product.service.ts` calls `http://localhost:3001/products...` for product-by-id, slug lookup, and related products.
+
+Note: Run this alongside the Angular dev server (`pnpm start`). To change the port temporarily:
+```bash
+pnpm run serve:catalog -- --port 4000
+```
 
 ---
 
