@@ -1,0 +1,43 @@
+.explore-designs-section{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    > a {
+      color: var(--primary);
+      font-weight: 500;
+    }
+  }
+  .style-item {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid var(--border);
+
+    img {
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      max-width: 80px;
+    }
+    .content {
+      color: var(--text);
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        list-style: none;
+        color: var(--text-muted);
+      }
+      .tag {
+      }
+    }
+  }
+}

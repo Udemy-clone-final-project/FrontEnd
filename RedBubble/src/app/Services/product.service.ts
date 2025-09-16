@@ -24,10 +24,63 @@ export interface PrintLocationDto {
   title: string;
 }
 
+export interface SizeGuideUnitDto {
+  sizes: string[];
+  chest: number[];
+  length: number[];
+}
+
+export interface SizeGuideGenderDto {
+  units: { in: SizeGuideUnitDto; cm: SizeGuideUnitDto };
+}
+
+export interface SizeGuidesDto {
+  men: SizeGuideGenderDto;
+  women: SizeGuideGenderDto;
+}
+
 @Injectable({ providedIn: 'root' })
 export class ProductService {
   private http = inject(HttpClient);
   private baseUrl = 'http://localhost:3001';
+
+  getAll(params?: {
+    page?: number;
+    limit?: number;
+    q?: string;
+    sort?: 'price';
+    order?: 'asc' | 'desc';
+    tag?: string;
+  }): Observable<{ items: ProductDto[]; total: number }> {
+    const page = params?.page ?? 1;
+    const limit = params?.limit ?? 12;
+    const httpParams: any = {
+      _page: page,
+      _limit: limit,
+    };
+    if (params?.q) httpParams.q = params.q;
+    if (params?.sort) {
+      httpParams._sort = params.sort;
+      httpParams._order = params.order ?? 'asc';
+    }
+    if (params?.tag) httpParams.tags_like = params.tag;
+
+    return this.http
+      .get<ProductDto[]>(`${this.baseUrl}/products`, {
+        params: httpParams,
+        observe: 'response'
+      })
+      .pipe(
+        map((res) => {
+          const total = Number(res.headers.get('X-Total-Count') ?? '0');
+          return { items: res.body ?? [], total };
+        })
+      );
+  }
+
+  getTags(): Observable<{ id: number; name: string; slug: string }[]> {
+    return this.http.get<{ id: number; name: string; slug: string }[]>(`${this.baseUrl}/tags`);
+  }
 
   getById(id: number): Observable<ProductDto> {
     return this.http.get<ProductDto>(`${this.baseUrl}/products/${id}`);
@@ -54,5 +107,9 @@ export class ProductService {
             : of([] as ProductDto[])
         )
       );
+  }
+
+  getSizeGuides(): Observable<SizeGuidesDto> {
+    return this.http.get<SizeGuidesDto>(`${this.baseUrl}/sizeGuides`);
   }
 }

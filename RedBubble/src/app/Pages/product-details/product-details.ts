@@ -7,6 +7,8 @@ import {
   ProductService,
   ProductDto,
   PrintLocationDto,
+  SizeGuidesDto,
+  SizeGuideUnitDto,
 } from '../../Services/product.service';
 import { CurrencyPipe } from '@angular/common';
 import { CartService, CartItem } from '../../Services/cart.service';
@@ -66,6 +68,15 @@ export class ProductDetails {
       !this.canAddToCart() &&
       (this.selectedColorIndex() < 0 || this.selectedSize() === null)
   );
+  // Size guide state
+  sizeGuides = signal<SizeGuidesDto | null>(null);
+  selectedGender = signal<'men' | 'women'>('men');
+  selectedUnit = signal<'in' | 'cm'>('in');
+  currentUnit = computed<SizeGuideUnitDto | null>(() => {
+    const guides = this.sizeGuides();
+    if (!guides) return null;
+    return guides[this.selectedGender()].units[this.selectedUnit()];
+  });
 
   constructor() {
     // Reset selections whenever product changes
@@ -95,6 +106,9 @@ export class ProductDetails {
 
 
   }
+
+  onGenderChange(gender: 'men' | 'women') { this.selectedGender.set(gender); }
+  onUnitChange(unit: 'in' | 'cm') { this.selectedUnit.set(unit); }
 
   selectColor(index: number) {
     this.selectedColorIndex.set(index);
@@ -159,5 +173,10 @@ export class ProductDetails {
       productId: item.productId,
       variant: item.variant
     });
+  }
+
+  // Init side-effects
+  ngOnInit() {
+    this.prdService.getSizeGuides().subscribe((g) => this.sizeGuides.set(g));
   }
 }

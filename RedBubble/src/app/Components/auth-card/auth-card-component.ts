@@ -8,7 +8,7 @@ import { AlertComponent } from '../alert/alert.component';
   selector: 'app-auth-card-component',
   imports: [AuthFormComponent, RouterLink, AlertComponent],
   templateUrl: './auth-card-component.html',
-  styleUrl: './auth-card-component.css',
+  styleUrls: ['./auth-card-component.css'],
 })
 
 export class AuthCardComponent {

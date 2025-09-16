@@ -12,11 +12,12 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   signup(payload: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/signup`, payload);
+    // json-server-auth uses /register for creating users
+    return this.http.post(`${this.baseUrl}/register`, payload);
   }
 
   login(password: string, email?: string, username?: string): Observable<any> {
     const payload = { email, username, password };
-    return this.http.post<any[]>(`${this.baseUrl}/login`, payload);
+    return this.http.post<any>(`${this.baseUrl}/login`, payload);
   }
 }

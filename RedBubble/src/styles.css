@@ -1,7 +1,7 @@
 :root {
   /* Core palette (generic names) */
   --primary: #ff596f;
-  --primary-dark: #19124F;
+  --primary-dark: #19124f;
   --primary-light: #f39c12;
   --secondary: #2c3e50;
   --accent: #007bff;
@@ -18,26 +18,24 @@
   --footer-border: #4a3c6a;
   --footer-link: #6d599c;
 
-
   /* Surfaces */
   --surface-muted: #f8f8f8;
 
   /* General Colors */
   --gold: #ffbc59;
-  --light-purple:#AFA3F2
+  --light-purple: #afa3f2;
 }
-ul{
+ul {
   list-style: none;
   padding-left: 0;
 }
-a{
+a {
   text-decoration: none;
-  color:var(--primary);
-  &:hover{
+  color: var(--primary);
+  &:hover {
     text-decoration: underline;
-    color:var(--primary)
+    color: var(--primary);
   }
-
 }
 button {
   border: none;
@@ -45,42 +43,46 @@ button {
   cursor: pointer;
 }
 
-h1{
+h1 {
   font-size: 2rem;
 }
-h2{
+h2 {
   font-size: 1.5rem;
 }
 
-h3{
+h3 {
   font-size: 1.2rem;
 }
 
-h4{
+h4 {
   font-size: 1rem;
 }
 
-h1,h2,h3,h4,h5,h6{
-  a{
-    color:inherit
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  a {
+    color: inherit;
   }
 }
 /* General Body Styles */
 body {
   display: flex;
   flex-direction: column;
-  color:var(--primary-dark);
-  font-size:1rem;
+  color: var(--primary-dark);
+  font-size: 1rem;
 }
 
 main {
   flex: 1;
 }
 
-hr{
-  border-color:var(--text-muted)
+hr {
+  border-color: var(--text-muted);
 }
-
 
 /* === Utility Classes for Colors and Backgrounds === */
 
@@ -182,7 +184,6 @@ hr{
 
 /* Example: .bg-primary .text-white for button, .text-muted for secondary text, etc. */
 
-
 .btn {
   display: inline-block;
   font-weight: 500;
@@ -194,13 +195,14 @@ hr{
   font-size: 1.2rem;
   line-height: 1.5;
   border-radius: 5px;
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    box-shadow 0.2s;
   cursor: pointer;
-
 
   border-radius: 50px;
   padding: 15px 20px;
-
 }
 
 .btn-primary {
@@ -238,7 +240,6 @@ hr{
   color: var(--white);
 }
 
-
 /* Header Styles */
 .top-bar {
   background-color: var(--secondary);
@@ -264,12 +265,7 @@ hr{
   border-radius: 5px;
   border: 1px solid var(--border-light);
   padding: 10px 20px;
-
-
-
 }
-
-
 
 .search-bar-container .btn {
   background: transparent;
@@ -339,10 +335,20 @@ hr{
 .product-card {
   position: relative;
   overflow: hidden;
+  aspect-ratio: 7/8;
+  border-radius: 10px;
+  cursor:pointer;
+  &:hover {
+    img {
+      transform: scale(1.05);
+    }
+  }
 }
 
 .product-card img {
   width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease;
 }
 
 .product-card .btn {
@@ -394,10 +400,6 @@ hr{
   transform: translateY(-50%);
 }
 
-
-
-
-
 /* Signup Page Styles */
 .signup-section {
   background-color: var(--surface-muted);
@@ -432,33 +434,29 @@ hr{
   position: relative;
   border: 2px solid transparent;
 
-  &:has(input[type="radio"]:checked){
-      border-color: var(--text);
-      border-radius: 5px;
+  &:has(input[type="radio"]:checked) {
+    border-color: var(--text);
+    border-radius: 5px;
 
-      .icon{
-          display: flex;
-      }
-  }
-  .icon{
-      position: absolute;
-      top: 0;
-      left: 25%;
-      transform: translate(-50%, -50%);
-      background-color: var(--white);
-      border-radius: 50%;
-      font-size:24px;
-      padding: 10px;
-      width: 40px;
-      height: 40px;
+    .icon {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      display: none;
-
-
-
-
+    }
+  }
+  .icon {
+    position: absolute;
+    top: 0;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    background-color: var(--white);
+    border-radius: 50%;
+    font-size: 24px;
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
   }
 }
 
@@ -563,22 +561,21 @@ hr{
   margin-right: 15px;
 }
 
-.footer-bottom ,.footer-app-stores{
+.footer-bottom,
+.footer-app-stores {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-top: 20px;
   border-top: 1px solid var(--footer-border);
 }
-.footer-app-stores{
+.footer-app-stores {
   justify-content: center;
-  padding-block:20px
+  padding-block: 20px;
 }
 
-.footer-bottom-links{
-
-  margin-block:20px;
-
+.footer-bottom-links {
+  margin-block: 20px;
 }
 
 .footer-bottom-links a {
@@ -588,8 +585,8 @@ hr{
   font-size: 14px;
   font-weight: 500;
   padding-right: 20px;
-  &:hover{
-      text-decoration: underline;
+  &:hover {
+    text-decoration: underline;
   }
 }
 
