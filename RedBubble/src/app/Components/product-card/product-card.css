@@ -19,24 +19,25 @@
       object-fit: cover;
       transition: transform 0.3s ease;
     }
-    i {
+    .quick-add {
       position: absolute;
-      top: 15px;
-      right: 15px;
-      font-size: 20px;
-      color: var(--grey-color);
+      bottom: 12px;
+      right: 12px;
+      font-size: 18px;
+      color: var(--white);
       cursor: pointer;
-      background-color: var(--white);
+      background-color: var(--primary, #e41321);
+      border: none;
       border-radius: 50%;
       width: 40px;
       height: 40px;
-      font-weight: 600;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-      aspect-ratio: 1/1;
+      box-shadow: 0 6px 12px rgba(0,0,0,.15);
+      transition: transform .12s ease;
     }
+    .quick-add:hover { transform: scale(1.05); }
   }
   .card-body {
     padding-block: 12px;

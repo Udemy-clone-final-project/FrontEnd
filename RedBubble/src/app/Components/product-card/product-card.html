@@ -5,7 +5,9 @@
       [src]="product.images[0] || '/images/products/black-t-shirt.webp'"
       alt="{{ product.title }}"
     />
-    <i class="bi bi-heart"></i>
+    <button class="quick-add" (click)="$event.preventDefault(); $event.stopPropagation(); addToCart()" title="Quick add to cart">
+      <i class="bi bi-bag-plus"></i>
+    </button>
   </div>
   <div class="card-body">
     <h5 class="card-title">{{ product.title }}</h5>

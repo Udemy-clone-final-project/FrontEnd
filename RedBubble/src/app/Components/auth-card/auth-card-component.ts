@@ -31,24 +31,27 @@ export class AuthCardComponent {
     this.alertMessage = ''; // Reset alert
 
     if(this.mode === 'signup'){
-      this.authService.signup({
-        ...formValue,
-        role: this.selectedRole,
-      }).subscribe({
+      const registerPayload = {
+        displayName: formValue.username || formValue.shopname || 'User',
+        email: formValue.email,
+        password: formValue.password
+      };
+      this.authService.signup(registerPayload).subscribe({
         next: (res: any) => {
           console.log("Signup successful",res);
           this.alertMessage = 'Signup successful! You will now be logged in.';
           this.alertType = 'success';
 
           // Automatically log the user in
-          this.authService.login(formValue.password, formValue.email, formValue.username).subscribe({
+          this.authService.login({ email: formValue.email, password: formValue.password }).subscribe({
             next: (loginRes: any) => {
               console.log("Auto-login successful", loginRes);
               this.router.navigate(['/home']);
             },
             error: (loginErr) => {
               console.log("Auto-login failed", loginErr);
-              this.alertMessage = `Login failed: ${loginErr.message}`;
+              const serverMsg = (loginErr?.error && typeof loginErr.error === 'string') ? loginErr.error : loginErr?.error?.message;
+              this.alertMessage = `Login failed (${loginErr.status}): ${serverMsg || loginErr.message}`;
               this.alertType = 'danger';
               this.router.navigate(['/auth/login']); // Fallback to manual login
             }
@@ -56,19 +59,21 @@ export class AuthCardComponent {
         },
         error: (err) => {
           console.log("Signup failed", err);
-          this.alertMessage = `Signup failed: ${err.message}`;
+          const serverMsg = (err?.error && typeof err.error === 'string') ? err.error : err?.error?.message;
+          this.alertMessage = `Signup failed (${err.status}): ${serverMsg || err.message}`;
           this.alertType = 'danger';
         }
       });
     } else {
-      this.authService.login(formValue.password, formValue.email, formValue.username).subscribe({
+      this.authService.login({ email: formValue.email, password: formValue.password }).subscribe({
         next: (res: any) => {
           console.log("Login successful", res);
           this.router.navigate(['/home']);
         },
         error: (err) => {
           console.log("Login failed", err);
-          this.alertMessage = `Login failed: ${err.message}`;
+          const serverMsg = (err?.error && typeof err.error === 'string') ? err.error : err?.error?.message;
+          this.alertMessage = `Login failed (${err.status}): ${serverMsg || err.message}`;
           this.alertType = 'danger';
         }
       });

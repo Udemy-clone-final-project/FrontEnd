@@ -1,0 +1,87 @@
+<main class="container my-4 order-details-page">
+  <div class="d-flex align-items-center justify-content-between mb-3">
+    <div>
+      <div class="small text-muted">Order</div>
+      <h2 class="h4 m-0">#{{ order?.id || order?.orderNumber }}</h2>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+      <span class="status-pill" [class]="'status-pill ' + (order?.status === 'completed' ? 'status-completed' : order?.status === 'cancelled' ? 'status-cancelled' : 'status-processing')">{{ order?.status || 'processing' }}</span>
+      <a routerLink="/orders" class="btn btn-outline-secondary btn-sm">Back to orders</a>
+    </div>
+  </div>
+
+  @if (loading) {<div class="text-center py-5"><div class="spinner-border" role="status"></div></div>}
+  @else if (error) {<div class="alert alert-warning">{{ error }}</div>}
+  @else {
+    <div class="row g-4">
+      <div class="col-lg-8">
+        <div class="card">
+          <div class="card-body p-0">
+            <div class="order-header d-flex align-items-center justify-content-between p-3">
+              <div class="small text-muted">Placed on {{ order.orderDate || order.createdAt | date:'fullDate' }}</div>
+              <div class="small">Total: <span class="fw-semibold">{{ order.total || (order.subtotal || 0) | currency:'USD' }}</span></div>
+            </div>
+            <div class="order-timeline px-3 pb-2">
+              <div class="step done">Confirmed</div>
+              <div class="step" [class.done]="order.status==='completed' || order.status==='shipped'">Shipped</div>
+              <div class="step" [class.done]="order.status==='completed'">Delivered</div>
+            </div>
+            <hr class="m-0">
+            <div class="list-group list-group-flush">
+              @for (it of (order.orderItems || order.items || []); track it.id) {
+                <div class="list-group-item py-3">
+                  <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                      <img [src]="(it.productVariantOrdered?.pictureUrl || it.productImage) || '/images/products/black-t-shirt.webp'" width="84" height="84" class="rounded border object-fit-cover">
+                    </div>
+                    <div class="col">
+                      <div class="fw-semibold">{{ it.productVariantOrdered?.productName || it.productName }}</div>
+                      <div class="small text-muted">{{ it.productVariantOrdered?.designTitle || it.variantName }}</div>
+                      <div class="small text-muted">{{ it.productVariantOrdered?.colorName || it.color }} • {{ it.productVariantOrdered?.sizeName || it.size }}</div>
+                      <div class="small">Qty: {{ it.quantity }}</div>
+                    </div>
+                    <div class="col-auto text-end">
+                      <div class="fw-semibold text-primary">{{ (it.price || it.unitPrice || 0) | currency:'USD' }}</div>
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card sticky-card">
+          <div class="card-body">
+            <div class="fw-semibold mb-2">Order Summary</div>
+            <div class="d-flex justify-content-between small mb-1"><span>Subtotal</span><span>{{ order.subtotal || 0 | currency:'USD' }}</span></div>
+            <div class="d-flex justify-content-between small mb-1"><span>Delivery</span><span>{{ order.deliveryMethod?.price || 0 | currency:'USD' }}</span></div>
+            <div class="d-flex justify-content-between small mb-3"><span>Method</span><span>{{ order.deliveryMethod?.shortName || order.deliveryMethod?.name || 'Standard' }}</span></div>
+            <hr>
+            <div class="d-flex justify-content-between"><span class="fw-semibold">Total</span><span class="fw-semibold">{{ order.total || (order.subtotal || 0) | currency:'USD' }}</span></div>
+          </div>
+        </div>
+
+        <div class="card mt-3">
+          <div class="card-body">
+            <div class="fw-semibold mb-2">Shipping Address</div>
+            <div class="small">{{ order.shippingAddress?.firstName }} {{ order.shippingAddress?.lastName }}</div>
+            <div class="small">{{ order.shippingAddress?.street }}</div>
+            <div class="small">{{ order.shippingAddress?.city }}, {{ order.shippingAddress?.state }} {{ order.shippingAddress?.postalCode }}</div>
+            <div class="small">{{ order.shippingAddress?.country }}</div>
+          </div>
+        </div>
+
+        <div class="card mt-3">
+          <div class="card-body">
+            <div class="fw-semibold mb-2">Help</div>
+            <div class="small text-muted">Need support with this order?</div>
+            <a routerLink="/contact" class="btn btn-outline-secondary btn-sm mt-2">Contact support</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</main>
+
+

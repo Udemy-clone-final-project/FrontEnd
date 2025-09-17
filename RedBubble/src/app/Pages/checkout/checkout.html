@@ -137,72 +137,34 @@
             <h5 class="mb-0">Payment</h5>
           </div>
 
-          <!-- Payment accordion -->
-          <div class="payment-accordion mb-3">
-            <div class="accordion-item" [class.active]="paymentMethod() === 'card'">
-              <label class="accordion-header list-group-item d-flex align-items-center gap-2">
-                <input class="form-check-input" type="radio" name="pm" [checked]="paymentMethod() === 'card'" (change)="paymentMethod.set('card')">
-                <span>Card</span>
-              </label>
-              <div class="accordion-body">
-                @if (paymentMethod() === 'card') {
-                <div class="row g-3">
-                  <div class="col-12">
-                    <label class="form-label small text-muted">Card number</label>
-                    <input class="form-control" placeholder="1234 1234 1234 1234" [ngModel]="cardNumber()" (ngModelChange)="cardNumber.set($event)">
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label small text-muted">Expiration date (MM/YY)</label>
-                    <input class="form-control" placeholder="MM / YY" [ngModel]="cardExp()" (ngModelChange)="cardExp.set($event)">
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label small text-muted">Security code</label>
-                    <input class="form-control" placeholder="CVC" [ngModel]="cardCvc()" (ngModelChange)="cardCvc.set($event)">
-                  </div>
-                  <div class="col-12">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" [ngModel]="saveCardInfo()" (ngModelChange)="saveCardInfo.set($event)">
-                      <label class="form-check-label small">Save my information for faster checkout</label>
-                    </div>
-                  </div>
-                </div>
-                }
-              </div>
+          <!-- Card payment only -->
+          <div class="row g-3">
+            <div class="col-12">
+              <label class="form-label small text-muted">Card number</label>
+              <input class="form-control" inputmode="numeric" autocomplete="cc-number" maxlength="23"
+                     placeholder="1234 1234 1234 1234"
+                     [ngModel]="cardNumber()"
+                     (ngModelChange)="onCardNumberChange($event)">
+              <div class="form-text text-danger" *ngIf="cardNumber() && !isValidCardNumber(cardNumber())">Enter a valid card number.</div>
             </div>
-
-            <div class="accordion-item" [class.active]="paymentMethod() === 'bank'">
-              <label class="accordion-header list-group-item d-flex align-items-center gap-2">
-                <input class="form-check-input" type="radio" name="pm" [checked]="paymentMethod() === 'bank'" (change)="paymentMethod.set('bank')">
-                <span>Bank</span>
-                <span class="badge text-bg-success ms-auto">Get $5</span>
-              </label>
-              <div class="accordion-body">
-                @if (paymentMethod() === 'bank') {
-                  <div class="alert alert-success py-2">Get $5 back when you pay by bank. <a href="#">See terms</a></div>
-                  <input class="form-control mb-3" placeholder="Search for your bank">
-                  <div class="row row-cols-2 row-cols-md-3 g-3">
-                    @for (bank of banks; track bank) {
-                      <div class="col">
-                        <button type="button" class="btn w-100 btn-outline-secondary text-start">{{ bank }}</button>
-                      </div>
-                    }
-                  </div>
-                }
-              </div>
+            <div class="col-md-6">
+              <label class="form-label small text-muted">Expiration (MM/YY)</label>
+              <input class="form-control" autocomplete="cc-exp" maxlength="5" placeholder="MM/YY"
+                     [ngModel]="cardExp()"
+                     (ngModelChange)="onCardExpChange($event)">
+              <div class="form-text text-danger" *ngIf="cardExp() && !isValidExp(cardExp())">Enter a valid date.</div>
             </div>
-
-            <div class="accordion-item" [class.active]="paymentMethod() === 'paypal'">
-              <label class="accordion-header list-group-item d-flex align-items-center gap-2">
-                <input class="form-check-input" type="radio" name="pm" [checked]="paymentMethod() === 'paypal'" (change)="paymentMethod.set('paypal')">
-                <span>PayPal</span>
-              </label>
-              <div class="accordion-body">
-                @if (paymentMethod() === 'paypal') {
-                  <div class="border rounded p-3 bg-light">
-                    <div class="fw-semibold d-flex align-items-center gap-2 mb-1"><i class="bi bi-paypal"></i> PayPal selected.</div>
-                    <div class="small text-muted">After submission, you will be redirected to PayPal to complete next steps.</div>
-                  </div>
-                }
+            <div class="col-md-6">
+              <label class="form-label small text-muted">CVC</label>
+              <input class="form-control" inputmode="numeric" autocomplete="cc-csc" maxlength="4" placeholder="CVC"
+                     [ngModel]="cardCvc()"
+                     (ngModelChange)="onCardCvcChange($event)">
+              <div class="form-text text-danger" *ngIf="cardCvc() && !isValidCvc(cardCvc())">Enter a valid CVC.</div>
+            </div>
+            <div class="col-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" [ngModel]="saveCardInfo()" (ngModelChange)="saveCardInfo.set($event)">
+                <label class="form-check-label small">Save my information for faster checkout</label>
               </div>
             </div>
           </div>
@@ -212,7 +174,7 @@
             <label class="form-check-label small">Use shipping address for billing</label>
           </div>
 
-          <button class="btn btn-danger btn-continue w-100" type="button">
+          <button class="btn btn-danger btn-continue w-100" type="button" [disabled]="!canPay()" (click)="startPayment()">
             <i class="bi bi-lock-fill me-1"></i> {{ payLabel() }}
           </button>
           <div class="text-center small text-muted mt-2">Secure payment with 256-bit SSL encryption</div>

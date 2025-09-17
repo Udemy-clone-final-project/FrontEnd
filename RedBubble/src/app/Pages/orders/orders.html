@@ -1,0 +1,52 @@
+<main class="container my-4">
+  <div class="d-flex align-items-center justify-content-between mb-3">
+    <h2 class="h4 m-0">My Orders</h2>
+    <a routerLink="/shop" class="btn btn-outline-secondary btn-sm">Continue Shopping</a>
+  </div>
+
+  @if (loading) {
+    <div class="text-center py-5"><div class="spinner-border" role="status"></div></div>
+  } @else if (error) {
+    <div class="alert alert-warning">{{ error }}</div>
+  } @else if (!orders.length) {
+    <div class="text-center py-5">
+      <p class="mb-2">You have no orders yet.</p>
+      <a routerLink="/shop" class="btn btn-primary">Shop now</a>
+    </div>
+  } @else {
+    <div class="card">
+      <div class="order-head d-flex align-items-center justify-content-between">
+        <div class="fw-semibold">Recent orders</div>
+        <div class="small text-muted">{{ orders.length }} total</div>
+      </div>
+      <div class="list-group list-group-flush">
+        @for (o of orders; track o.id) {
+          <div class="list-group-item py-3 order-row">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+              <div class="d-flex align-items-center gap-3">
+                <div>
+                  <div class="fw-semibold">#{{ o.id || o.orderNumber }}</div>
+                  <div class="small text-muted">Placed {{ o.orderDate || o.createdAt | date:'mediumDate' }} · ETA {{ (o.estimatedDelivery || o.deliveryDate) || ('in 5–7 days') }}</div>
+                  <div class="thumbs mt-1">
+                    @for (it of (o.orderItems || o.items || []).slice(0,4); track it.id) {
+                      <img [src]="(it.productVariantOrdered?.pictureUrl || it.productImage) || '/images/products/black-t-shirt.webp'">
+                    }
+                  </div>
+                </div>
+              </div>
+              <div class="text-end ms-auto">
+                <div class="status-pill" [class]="'status-pill ' + (o.status === 'completed' ? 'status-completed' : o.status === 'cancelled' ? 'status-cancelled' : 'status-processing')">{{ o.status || 'processing' }}</div>
+                <div class="fw-semibold text-primary mt-1">{{ (o.subtotal || o.totalAmount || 0) | currency:'USD' }}</div>
+                <div class="d-flex gap-2 justify-content-end mt-2">
+                  <a [routerLink]="['/orders', o.id]" class="btn btn-sm btn-outline-primary">View details</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</main>
+
+

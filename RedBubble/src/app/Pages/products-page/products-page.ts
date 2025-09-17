@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProductService } from '../../Services/product-service';
-import { Product } from '../../Models/product';
+import { ProductService } from '../../Services/product.service';
+import { ProductDto } from '../../Services/product.service';
 import { ProductsGrid } from '../../Components/products-grid/products-grid';
 
 @Component({
@@ -12,7 +12,7 @@ import { ProductsGrid } from '../../Components/products-grid/products-grid';
 })
 export class ProductsPage implements OnInit {
 
-  products: Product[] = []
+  products: ProductDto[] = []
   
   
   
@@ -25,16 +25,19 @@ export class ProductsPage implements OnInit {
       const themeId = params.get('themeId');
 
       if (subCatId) {
-        this.productService.getProductsBySubCategory(subCatId)
-          .subscribe(data => {
-            this.products = data;
+        this.productService.getAll({ page: 1, limit: 12, tag: subCatId })
+          .subscribe(({ items }) => {
+            this.products = items;
           });
-      }
-
-      else if (themeId) {
-        this.productService.getProductsByTheme(themeId)
-          .subscribe(data => {
-            this.products = data
+      } else if (themeId) {
+        this.productService.getAll({ page: 1, limit: 12, tag: themeId })
+          .subscribe(({ items }) => {
+            this.products = items;
+          });
+      } else {
+        this.productService.getAll({ page: 1, limit: 12 })
+          .subscribe(({ items }) => {
+            this.products = items;
           });
       }
     }
