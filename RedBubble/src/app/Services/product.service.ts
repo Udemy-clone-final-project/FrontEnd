@@ -42,7 +42,7 @@ export interface SizeGuidesDto {
 @Injectable({ providedIn: 'root' })
 export class ProductService {
   private http = inject(HttpClient);
-  private baseUrl = 'http://localhost:3001';
+  private baseUrl = 'https://localhost:7106/api';
 
   getAll(params?: {
     page?: number;
@@ -55,27 +55,44 @@ export class ProductService {
     const page = params?.page ?? 1;
     const limit = params?.limit ?? 12;
     const httpParams: any = {
-      _page: page,
-      _limit: limit,
+      page,
+      pageSize: limit,
     };
-    if (params?.q) httpParams.q = params.q;
-    if (params?.sort) {
-      httpParams._sort = params.sort;
-      httpParams._order = params.order ?? 'asc';
+    if (params?.q) httpParams.searchItem = params.q;
+    if (params?.sort === 'price') {
+      httpParams.sortColomn = 'price';
+      httpParams.sortOrder = params?.order ?? 'asc';
     }
-    if (params?.tag) httpParams.tags_like = params.tag;
+    // Optionally map tag to category if numeric
+    if (params?.tag && /^\d+$/.test(params.tag)) httpParams.Category = Number(params.tag);
 
     return this.http
-      .get<ProductDto[]>(`${this.baseUrl}/products`, {
-        params: httpParams,
-        observe: 'response'
-      })
+      .get<PagedResponse<ProductVariantDto>>(`${this.baseUrl}/ProductVariant`, { params: httpParams })
       .pipe(
         map((res) => {
-          const total = Number(res.headers.get('X-Total-Count') ?? '0');
-          return { items: res.body ?? [], total };
+          const items = (res.items ?? res.Items ?? []).map(this.mapVariantToProduct);
+          const total = (res.total ?? res.totalCount ?? res.TotalCount ?? 0) as number;
+          return { items, total };
         })
       );
+  }
+
+  private mapVariantToProduct(variant: ProductVariantDto): ProductDto {
+    return {
+      id: variant.id,
+      slug: `${variant.id}`,
+      title: `${variant.designTitle} - ${variant.baseProductName}`,
+      description: '',
+      price: variant.price,
+      currency: 'USD',
+      images: (variant.images || []).map(i => i.imageUrl || '').filter(Boolean),
+      style: variant.baseProductName,
+      colors: [{ code: variant.colorCode, name: variant.colorName }].filter(c => !!c.code && !!c.name) as any,
+      sizes: [variant.sizeName].filter(Boolean) as string[],
+      tags: [],
+      artist: { id: 0, name: variant.designTitle },
+      printLocation: []
+    };
   }
 
   getTags(): Observable<{ id: number; name: string; slug: string }[]> {
@@ -83,33 +100,53 @@ export class ProductService {
   }
 
   getById(id: number): Observable<ProductDto> {
-    return this.http.get<ProductDto>(`${this.baseUrl}/products/${id}`);
+    return this.http.get<ProductVariantDto>(`${this.baseUrl}/ProductVariant/${id}`).pipe(map(this.mapVariantToProduct));
   }
 
   getBySlug(slug: string): Observable<ProductDto | null> {
-    return this.http
-      .get<ProductDto[]>(`${this.baseUrl}/products/`, { params: { slug } })
-      .pipe(map((arr) => arr[0] ?? null));
+    const id = Number(slug);
+    if (Number.isNaN(id)) return of(null);
+    return this.getById(id).pipe(map(p => p || null));
   }
 
   getRelatedProducts(productId: number): Observable<ProductDto[]> {
-    // JSON Server: /related?productId=ID returns [{ productId, relatedId }]
-    return this.http
-      .get<{ productId: number; relatedId: number }[]>(`${this.baseUrl}/related`, {
-        params: { productId }
-      })
-      .pipe(
-        map(rels => rels.map(r => r.relatedId)),
-        // Fan-out to fetch each related product. In real API, backend should return products directly.
-        switchMap((ids) =>
-          ids.length
-            ? forkJoin(ids.map((id) => this.http.get<ProductDto>(`${this.baseUrl}/products/${id}`)))
-            : of([] as ProductDto[])
-        )
-      );
+    // Placeholder: backend doesn't expose related endpoint yet
+    return of([]);
   }
 
   getSizeGuides(): Observable<SizeGuidesDto> {
-    return this.http.get<SizeGuidesDto>(`${this.baseUrl}/sizeGuides`);
+    return of({
+      men: { units: { in: { sizes: [], chest: [], length: [] }, cm: { sizes: [], chest: [], length: [] } } },
+      women: { units: { in: { sizes: [], chest: [], length: [] }, cm: { sizes: [], chest: [], length: [] } } }
+    } as SizeGuidesDto);
   }
+}
+
+// Backend contracts used for mapping
+export interface ProductVariantDto {
+  id: number;
+  price: number;
+  isActive: boolean;
+  baseProductId: number;
+  baseProductName: string;
+  baseProductPrice: number;
+  designId: number;
+  designTitle: string;
+  designPrice: number;
+  colorId: number;
+  colorName: string;
+  colorCode: string;
+  sizeId: number;
+  sizeName: string;
+  images: { id: number; imageUrl?: string; fileName?: string; altText?: string; isPrimary: boolean; isActive: boolean }[];
+}
+
+export interface PagedResponse<T> {
+  items?: T[];
+  Items?: T[];
+  total?: number;
+  totalCount?: number;
+  TotalCount?: number;
+  page?: number;
+  pageSize?: number;
 }

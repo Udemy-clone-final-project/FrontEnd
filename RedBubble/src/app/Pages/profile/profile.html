@@ -1,0 +1,48 @@
+<main class="container my-4">
+  <h2 class="h4 mb-3">Account Settings</h2>
+
+  @if (loading()) { <div class="text-center py-5"><div class="spinner-border"></div></div> }
+  @else {
+    <div class="row g-3">
+      <div class="col-lg-8">
+        <div class="card">
+          <div class="card-body">
+            <div *ngIf="success()" class="alert alert-success py-2" role="alert">{{ success() }}</div>
+            <div class="fw-semibold mb-2">Profile</div>
+            <div class="mb-3">
+              <label class="form-label small text-muted">Display name</label>
+              <input class="form-control" [ngModel]="profile().displayName" (ngModelChange)="setDisplayName($event)">
+            </div>
+            <div class="mb-3">
+              <label class="form-label small text-muted">Email</label>
+              <input class="form-control" type="email" [ngModel]="profile().email" (ngModelChange)="setEmail($event)">
+            </div>
+            <div class="mb-3">
+              <label class="form-label small text-muted">Phone</label>
+              <input class="form-control" [ngModel]="profile().phone" (ngModelChange)="setPhone($event)">
+            </div>
+            <button class="btn btn-primary" [disabled]="saving()" (click)="save()">Save changes</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="card">
+          <div class="card-body">
+            <div *ngIf="success()" class="alert alert-success py-2" role="alert">{{ success() }}</div>
+            <div class="fw-semibold mb-2">Change Password</div>
+            <div class="mb-2">
+              <label class="form-label small text-muted">Current password</label>
+              <input class="form-control" type="password" [(ngModel)]="changePassword.currentPassword">
+            </div>
+            <div class="mb-3">
+              <label class="form-label small text-muted">New password</label>
+              <input class="form-control" type="password" [(ngModel)]="changePassword.newPassword">
+            </div>
+            <button class="btn btn-outline-secondary w-100" [disabled]="savingPwd()" (click)="savePassword()">Update password</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</main>

@@ -1,0 +1,12 @@
+.card { border: none; border-radius: 12px; box-shadow: 0 6px 24px rgba(0,0,0,.06); }
+.list-group-item { border-color: #f1f1f1; }
+.order-head { background: linear-gradient(180deg, #fafafa, #fff); border-bottom: 1px solid #f1f1f1; padding: 16px 20px; border-top-left-radius: 12px; border-top-right-radius: 12px; }
+.status-pill { padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+.status-processing { background: #fff3cd; color: #856404; }
+.status-completed { background: #e8f5e9; color: #1b5e20; }
+.status-cancelled { background: #fdecea; color: #b71c1c; }
+.order-row:hover { background: #fcfcfc; }
+.thumbs img { width: 36px; height: 36px; object-fit: cover; border-radius: 8px; border: 1px solid #eee; }
+.thumbs img + img { margin-left: 6px; }
+
+
