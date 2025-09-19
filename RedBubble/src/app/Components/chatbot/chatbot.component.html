@@ -1,0 +1,17 @@
+<div class="chatbot" [class.open]="open">
+  <button class="toggle" (click)="toggle()">{{ open ? '×' : '💬' }}</button>
+  <div class="panel" *ngIf="open">
+    <div class="messages">
+      <div *ngFor="let m of messages()" class="msg" [class.user]="m.role==='user'" [class.assistant]="m.role==='assistant'">
+        {{ m.content }}
+      </div>
+    </div>
+    <form (ngSubmit)="send()" class="input">
+      <input [(ngModel)]="input" name="chat" placeholder="Type your message..." />
+      <button type="submit" [disabled]="loading">Send</button>
+    </form>
+  </div>
+  
+</div>
+
+
